@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio Modal y popover tooltip</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h3> Comprar Productos</h3>
+        <table class="table table-striped ">
+            <thead class="thead-dark">
+                <tr>
+                    <th></th>
+                    <th>Nombre</th>
+                    <th>Codigo</th>
+                </tr>                
+            </thead>
+            <tbody>
+                <tr>
+                    <td> 
+                        <button class="btn btn-sm btn-primary"
+                            data-toggle="modal" 
+                            data-target="#verProductoModal"
+                            data-precio="750"
+                            data-codigo="00123"
+                            data-nombre="Laptop"
+                        >Ver</button> 
+                    </td>
+                    <td> <p data-toggle="tooltip" 
+                            data-placement="top" 
+                            title="Stock Suficiente" >Laptop</p> </td>
+                    <td><p>00123</p> </td>
+                </tr>
+                <tr>
+                    <td> 
+                        <button class="btn btn-sm btn-primary"
+                            data-toggle="modal" 
+                            data-target="#verProductoModal"
+                            data-precio="25"
+                            data-codigo="00456"
+                            data-nombre="Mouse"
+                        >Ver</button> 
+                    </td>
+                    <td>
+                        <p data-toggle="tooltip" 
+                            data-placement="top" 
+                            title="Stock Por Acabarse"
+                        >Mouse</p> 
+                    </td>
+                    <td>
+                        <p>00456</p> </td>
+                </tr>
+                <tr>
+                    <td> 
+                        <button class="btn btn-sm btn-primary"
+                            data-toggle="modal" 
+                            data-target="#verProductoModal"
+                            data-precio="18"
+                            data-codigo="00789"
+                            data-nombre="Teclado"
+
+                        >Ver</button> 
+                    </td>
+                    <td>
+                        <p
+                            data-toggle="tooltip" 
+                            data-placement="top" 
+                            title="Sin Stock"                        
+                        >Teclado</p> 
+                    </td>
+                    <td>
+                        <p
+                            data-toggle="popover"
+                            title="Título del Popover"
+                            data-content="Aquí va la información detallada. Haz clic otra vez para cerrar." 
+                        >00789</p> 
+                        <button type="button" class="btn btn-danger ml-3" 
+                data-toggle="popover" title="Título del Popover" 
+                data-content="Aquí va la información detallada. Haz clic otra vez para cerrar.">
+            Haz Clic aquí
+        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="modal fade" id="verProductoModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"> Detalle Producto</h5>
+                        <button type="button" class="close" 
+                                data-dismiss="modal">
+                                <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="nombre-p"></p>
+                        <p id="codigo-p"></p>
+                        <p id="precio-p"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function(){
+             $("#verProductoModal").on('show.bs.modal',function (event) {
+                console.log(event.relatedTarget);
+                const btn= $(event.relatedTarget);
+                const nombre= btn.data('nombre');
+                const codigo= btn.data('codigo');
+                const precio= btn.data('precio');
+                console.log(precio);
+
+                $("#nombre-p").html("Nombre: <strong>"+nombre+"</strong>");
+                $("#codigo-p").html("Codigo:"+codigo);
+                $("#precio-p").html('Precio: <span class="text-success font-weight-bold">$'+precio+"</span>");
+                
+            })
+             $('[data-toggle="tooltip"]').tooltip();
+             $('[data-toggle="popover"]').popover({
+                trigger: 'focus'
+            });
+        });
+       
+
+    </script>
+</body>
+</html>

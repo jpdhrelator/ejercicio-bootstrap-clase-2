@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2 Collapse</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h3>Bitácore de Eventos</h3>
+
+        <button id="btnToogleCollapse" class="btn btn-info mb-3" 
+            data-toggle="collapse" 
+            data-target="#divColapsable"> 
+            Muestra Mensaje
+        </button>
+
+        <div class="collapse" id="divColapsable">
+            <div>
+                !Hola¡ Soy el contenido secreto.
+            </div>
+        </div>
+
+        <div id="alertEstado" class="alert alert-secondary">
+            Estado: Toogle Cerrado
+        </div>
+    </div>
+    
+
+
+     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+
+        $("#divColapsable").on('show.bs.collapse',function(){
+            console.log('Abriendo');
+            $("#btnToogleCollapse").html('Oculta Mensaje');
+            $("#alertEstado").html('Toogle Abriendose')
+            .removeClass("alert-secondary")
+            .addClass("alert-primary");
+        });
+        $("#divColapsable").on('shown.bs.collapse',function(){
+            console.log('Totalmente');
+            $("#alertEstado").html('Toogle Totalmente Abierto')
+            .removeClass("alert-primary")
+            .addClass("alert-success");
+        });
+        $("#divColapsable").on('hide.bs.collapse',function(){
+            $("#btnToogleCollapse").html('Muestra Mensaje');
+            $("#alertEstado").html('Toogle Cerrado')
+            .removeClass("alert-success")
+            .addClass("alert-secondary");
+        });
+    </script>
+
+</body>
+</html>

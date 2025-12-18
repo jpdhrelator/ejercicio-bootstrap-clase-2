@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio Carruser</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h3 class="text-center">Control Remoto de Carrusel</h3>
+
+        <div id="carruselDiapos" class="carousel slide mb-4" 
+             data-ride="carousel" data-interval="false">
+            <div class="carousel-inner">
+                <div class="carousel-item  active bg-warning text-dark text-center p-5">
+                    <h1>Diapositiva 1</h1>
+                    <p>Inicio del Recorrido</p>
+                </div>
+                <div class="carousel-item  bg-success text-dark text-center p-5">
+                    <h1>Diapositiva 2</h1>
+                    <p>Mitad del Recorrido</p>
+                </div>
+                <div class="carousel-item  bg-danger text-dark text-center p-5">
+                    <h1>Diapositiva 3</h1>
+                    <p>Final del Recorrido</p>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="text-center">
+            <button class="btn btn-dark" id="btnPrev"> <-- Atras</button>
+            <button class="btn btn-dark" id="btnNext"> Siguient --></button>
+<hr>
+            <button id="goTo1" class="btn btn-outline-secondary btn-sm ">ir Diapo 1</button>
+            <button id="goTo2" class="btn btn-outline-secondary btn-sm ">ir Diapo 2</button>
+            <button id="goTo3" class="btn btn-outline-secondary btn-sm ">ir Diapo 3</button>
+        </div>
+
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $("#btnPrev").click(function(){
+                $("#carruselDiapos").carousel("prev");
+            });
+            $("#btnNext").click(function(){
+                $("#carruselDiapos").carousel("next");
+            });
+
+            $("#goTo1").click(function(){
+                $('#carruselDiapos').carousel(0);
+            });
+            $("#goTo2").click(function(){
+                $('#carruselDiapos').carousel(1);
+            });
+            $("#goTo3").click(function(){
+                $('#carruselDiapos').carousel(2);
+            });
+
+        })
+    </script>
+</body>
+</html>
